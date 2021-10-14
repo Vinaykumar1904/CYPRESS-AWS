@@ -10,7 +10,7 @@ phases:
       - npm install
   pre_build:
     commands:
-      - npx cypress run
+      - node_modules/.bin/cypress open
   build:
     commands:
       - npm run start:ci &
