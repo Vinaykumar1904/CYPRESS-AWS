@@ -8,9 +8,7 @@ phases:
     commands:
       - npm ci
       - npm install
-  pre_build:
-    commands:
-      - node_modules/.bin/cypress open
+
   build:
     commands:
       - npm run start:ci &
