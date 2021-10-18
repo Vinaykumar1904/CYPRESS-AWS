@@ -1,16 +1,20 @@
-## buildspec.yml
 version: 0.2
-
 phases:
   install:
-    runtime-versions:
-      nodejs: latest
     commands:
-      - npm ci
-      - npm install
-      - apt-get install libgtk2.0-0 libgtk-3-0 libgbm-dev libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2 libxtst6 xauth xvfb
-
+      - echo "install cypress dependencies..."
+      - npm install -g gatsby-cli
+      - npm install -g purgecss
+      - apt-get update
+      - apt-get install -y libgtk2.0-0 libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2 xvfb
+  pre_build:
+    commands:
+      - echo "pre_build step"
   build:
     commands:
-      - npm run start:ci &
-      - npx cypress run --record
+      - npm install
+      - npm run-script build
+      - node_modules/.bin/cypress run
+  post_build:
+    commands:
+      - echo "post_build step"
