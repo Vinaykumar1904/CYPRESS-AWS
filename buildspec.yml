@@ -9,6 +9,6 @@ phases:
       - npm install
   build:
     commands:
-      - npx cypress run 
+      - npx cypress run --record --parallel
       - npx cypress run --browser chrome
       - npx cypress run --browser firefox
